@@ -1,67 +1,11 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Firestore 最小サンプル</title>
+  <meta charset="utf-8">
+  <title>GitHub Pages テスト</title>
 </head>
 <body>
-  <h1>Firestore 最小サンプル</h1>
-
-  <input id="text" placeholder="メモを入力" />
-  <button id="add">追加</button>
-
-  <h2>一覧</h2>
-  <ul id="list"></ul>
-
-  <script type="module">
-    // 1) Firebase SDK 読み込み（CDN）
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import {
-      getFirestore, collection, addDoc,
-      query, orderBy, onSnapshot, serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-    // 2) Firebase設定（ここを置き換え）
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "XXXX",
-      appId: "XXXX"
-    };
-
-    // 3) 初期化
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // 4) 追加処理
-    document.getElementById("add").addEventListener("click", async () => {
-      const textEl = document.getElementById("text");
-      const text = textEl.value.trim();
-      if (!text) return;
-
-      await addDoc(collection(db, "memos"), {
-        text,
-        createdAt: serverTimestamp()
-      });
-
-      textEl.value = "";
-    });
-
-    // 5) リアルタイム一覧表示
-    const ul = document.getElementById("list");
-    const q = query(collection(db, "memos"), orderBy("createdAt", "desc"));
-
-    onSnapshot(q, (snapshot) => {
-      ul.innerHTML = "";
-      snapshot.forEach((doc) => {
-        const li = document.createElement("li");
-        li.textContent = doc.data().text;
-        ul.appendChild(li);
-      });
-    });
-  </script>
+  <h1>GitHub Pages が表示できました</h1>
+  <p>このページは GitHub Pages で公開されています。</p>
 </body>
 </html>
